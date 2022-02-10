@@ -27,6 +27,7 @@ class CoinValue(Base):
     balance = Column(Float)
     usd_price = Column(Float)
     btc_price = Column(Float)
+    hodl_perc = Column(Float)
 
     interval = Column(Enum(Interval))
 
@@ -38,6 +39,7 @@ class CoinValue(Base):
         balance: float,
         usd_price: float,
         btc_price: float,
+        hodl_perc: float,
         interval=Interval.MINUTELY,
         datetime: _datetime = None,
     ):
@@ -45,6 +47,7 @@ class CoinValue(Base):
         self.balance = balance
         self.usd_price = usd_price
         self.btc_price = btc_price
+        self.hodl_perc = hodl_perc
         self.interval = interval
         self.datetime = datetime or _datetime.now()
 

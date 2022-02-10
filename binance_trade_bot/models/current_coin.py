@@ -20,3 +20,13 @@ class CurrentCoin(Base):  # pylint: disable=too-few-public-methods
 
     def info(self):
         return {"datetime": self.datetime.isoformat(), "coin": self.coin.info()}
+
+
+class CurrentCoins(Base): #
+    __tablename__ = "current_coins_history"
+    id = Column(Integer, primary_key=True)
+    coins_id = Column(String, ForeignKey("coins.symbol"))
+    coins = relationship("Coin")
+    datetime = Column(DateTime)
+
+    #coins = List[CurrentCoin]

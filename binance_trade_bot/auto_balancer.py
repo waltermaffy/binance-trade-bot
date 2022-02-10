@@ -10,7 +10,7 @@ from .logger import Logger
 from .models import Coin, CoinValue, Pair
 
 
-class AutoTrader:
+class AutoBalancer:
     def __init__(self, binance_manager: BinanceAPIManager, database: Database, logger: Logger, config: Config):
         self.manager = binance_manager
         self.db = database
@@ -69,10 +69,16 @@ class AutoTrader:
 
                 pair.ratio = from_coin_price / coin_price
 
+    def initialize_holdings(self):
+        """
+        Initialize the buying threshold of all the coins for decide first two holding coins
+        HC. We will use the coin with the highest ratio to buy the coin with the lowest ratio
+        BUY 50% BTC and 10% of T
+        """
+        
+
     def initialize_trade_thresholds(self):
-        """
-        Initialize the buying threshold of all the coins for trading between them
-        """
+        
         all_tickers = self.manager.get_all_market_tickers()
 
         session: Session
